@@ -61,7 +61,11 @@ jobs:
       uses: actions/checkout@v4
       with:
         lfs: true
-
+        
+   # Install Power Platform Tools
+    - name: Install Power Platform Tools
+      uses: microsoft/powerplatform-actions/actions-install@v1
+      
     # Download the ready-to-release managed solution from GitHub artifact store
     - name: Download Managed Solution Artifact
       uses: actions/download-artifact@v4  # Updated to latest version
