@@ -34,16 +34,12 @@ jobs:
       - name: Install Power Platform Tools
         uses: microsoft/powerplatform-actions/actions-install@v1
 
-      # Export the managed solution directly from the DEV environment
-      - name: Export Managed Solution
-        uses: microsoft/powerplatform-actions/export-solution@v1
+      - name: Pack Managed Solution
+        uses: microsoft/powerplatform-actions/pack-solution@v1
         with:
-          environment-url: ${{ secrets.PowerPlatformDevUrl }}
-          user-name: ${{ secrets.PowerPlatformAppID }}
-          password-secret: ${{ secrets.PowerPlatformClientSecret }}
-          solution-name: ${{ env.solution_name }}
-          solution-output-file: ${{ env.solution_outbound_folder }}/${{ env.solution_name }}_managed.zip
-          managed: true
+          solution-folder: ${{ env.solution_source_folder }}/${{ env.solution_name }}
+          solution-file: ${{ env.solution_outbound_folder }}/${{ env.solution_name }}_managed.zip
+          solution-type: Managed
 
       # Upload the managed solution to GitHub artifact store for later use
       - name: Upload Managed Solution as Artifact
